@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace命名空间，作用就是对sql进行分类化管理，理解sql隔离
+注意：使用mapper代理方法开发，namespace有特殊重要的作用，namespace等于mapper接口地址
+-->
+<mapper namespace="com.Young.book.dao.LibrarianMapper">
+
+    <select id="getLibrarianById" parameterType="String" resultType="Librarian">
+        SELECT * FROM librarian WHERE id=#{id}
+    </select>
+
+    <select id="getLibrarianByUsername" parameterType="String" resultType="Librarian">
+        SELECT * FROM librarian WHERE username=#{username}
+    </select>
+
+    <insert id="addLibrarian" parameterType="Librarian">
+        INSERT INTO librarian (id, username, password)
+        VALUES(#{id}, #{username}, #{password})
+    </insert>
+
+    <update id="updateLibrarian" parameterType="Librarian">
+        UPDATE librarian
+        <trim prefix="set" suffixOverrides=",">
+            <if test="username!=null">username=#{username}</if>
+            <if test="password!=null">password=#{password}</if>
+        </trim>
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteLibrarian" parameterType="String">
+        DELETE FROM librarian WHERE id=#{id}
+    </delete>
+</mapper>
+
+

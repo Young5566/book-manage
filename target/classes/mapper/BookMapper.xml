@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- namespace命名空间，作用就是对sql进行分类化管理，理解sql隔离
+注意：使用mapper代理方法开发，namespace有特殊重要的作用，namespace等于mapper接口地址
+-->
+<mapper namespace="com.Young.book.dao.BookMapper">
+
+    <select id="getBookById" parameterType="String" resultType="Book">
+        SELECT * FROM book WHERE id=#{id}
+    </select>
+    <select id="getTotalCount" resultType="int">
+        select count(*) from book;
+    </select>
+
+    <select id="getAllBook" parameterType="int" resultType="Book">
+        SELECT * FROM book limit #{offset}, #{pageSize}
+    </select>
+
+    <insert id="addBook" parameterType="Book">
+        INSERT INTO book (id, bookName, author, ISBN, price, publish, description)
+              VALUES(#{id}, #{bookName}, #{author}, #{ISBN}, #{price}, #{publish}, #{description})
+    </insert>
+
+    <update id="updateBook" parameterType="Book" keyProperty="id">
+        UPDATE book
+        SET bookName=#{bookName},author=#{author},ISBN=#{ISBN}, price=#{price}, publish=#{publish},description=#{description}
+        <!--<trim prefix="set" suffixOverrides=",">-->
+            <!--<if test="bookName!=null">bookName=#{bookName}</if>-->
+            <!--<if test="author!=null">author=#{author}</if>-->
+            <!--<if test="ISBN!=null">ISBN=#{ISBN}</if>-->
+            <!--<if test="price!=null">price=#{price}</if>-->
+            <!--<if test="publish!=null">publish=#{publish}</if>-->
+            <!--<if test="description!=null">description=#{description}</if>-->
+        <!--</trim>-->
+        WHERE id=#{id}
+    </update>
+
+    <delete id="deleteBook" parameterType="String">
+        DELETE FROM book WHERE id=#{id}
+    </delete>
+</mapper>
+
+
