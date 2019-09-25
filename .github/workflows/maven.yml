@@ -6,11 +6,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: [tomcat,maven]
+      image: maven
       ports: 
         - 8081
-    
+        
     steps:
+    - name: set up tomcat
+      run:  docker pull tomcat
     - uses: actions/checkout@v1
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
