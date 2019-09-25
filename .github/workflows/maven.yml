@@ -12,7 +12,7 @@ jobs:
         
     steps:
     - name: set up tomcat
-      run:  docker pull tomcat
+      run:  docker pull tomcat:8.5.31
     - uses: actions/checkout@v1
     - name: Set up JDK 1.8
       uses: actions/setup-java@v1
