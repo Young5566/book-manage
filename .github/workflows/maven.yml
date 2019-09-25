@@ -15,6 +15,7 @@ jobs:
       run: |
         mvn package --file pom.xml
         cd /home/runner/work/book-manage/book-manage/target
+        pwd
+        ls
         java -jar bookManage.war –httpPort=9999
-        dir
       
