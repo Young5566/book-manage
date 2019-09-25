@@ -14,7 +14,7 @@ jobs:
     - name: Build with Maven
       run: |
         mvn package --file pom.xml
-        cd target
+        cd /home/runner/work/book-manage/book-manage/target
         java -jar bookManage.war –httpPort=9999
         dir
       
