@@ -7,7 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: tomcat:8.5.31
-      ports: 8081
+      ports: 
+        - 8081
     
     steps:
     - uses: actions/checkout@v1
