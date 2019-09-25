@@ -6,7 +6,9 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: tomcat:8.5.31
+      image: 
+        - tomcat:8.5.31
+        - maven:3.5.3
       ports: 
         - 8081
     
